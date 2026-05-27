@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react"
 import "./globals.css";
 import Background3D from "@/components/Background3D";
 import Navigation from "@/components/Navigation";
@@ -32,6 +33,7 @@ export default function RootLayout({
         <main className="flex-grow z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12">
           {children}
         </main>
+        <Analytics />
       </body>
     </html>
   );
