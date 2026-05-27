@@ -1,4 +1,4 @@
-export const calculatorNiches = [
+const baseNiches = [
   { slug: "freelance-photographer", title: "Freelance Photographer", baseSalary: 60000, expenses: ["Equipment Maintenance", "Studio Rent", "Software (Adobe CC)", "Travel/Gas"], emoji: "📸" },
   { slug: "wedding-photographer", title: "Wedding Photographer", baseSalary: 75000, expenses: ["Equipment", "Travel/Gas", "Software", "Marketing/Ads"], emoji: "💍" },
   { slug: "react-developer", title: "React Developer", baseSalary: 95000, expenses: ["Software Subscriptions", "Hardware Upgrades", "Cloud Hosting", "Internet"], emoji: "💻" },
@@ -31,3 +31,28 @@ export const calculatorNiches = [
   { slug: "event-planner", title: "Event Planner", baseSalary: 60000, expenses: ["Planning Software", "Travel", "Marketing", "Phone Bill"], emoji: "🎉" },
   { slug: "freelance-makeup-artist", title: "Freelance Makeup Artist", baseSalary: 50000, expenses: ["Makeup Kits", "Travel/Gas", "Sanitation Supplies", "Marketing"], emoji: "💄" }
 ];
+
+export const calculatorNiches = baseNiches.map(niche => {
+  return {
+    ...niche,
+    seoParagraphs: [
+      `As a ${niche.title}, setting the right hourly rate is critical for sustaining your business. Many freelancers drastically undercharge because they only consider their desired take-home pay, completely ignoring taxes, vacation time, and the significant costs of running a freelance business.`,
+      `For example, typical expenses in this industry often include ${niche.expenses.join(', ')}. If you don't factor these into your hourly rate, you are effectively taking a pay cut every time you pay a business expense.`,
+      `Using our calculator, you can reverse-engineer your perfect hourly rate. By starting with a target base salary (the industry average is roughly $${niche.baseSalary.toLocaleString()}), and adding your specific overhead, you ensure that every billable hour actually moves you closer to your financial goals.`
+    ],
+    faqs: [
+      {
+        question: `What is a good starting salary for a ${niche.title}?`,
+        answer: `While it varies by experience and location, a solid benchmark for a full-time equivalent salary is around $${niche.baseSalary.toLocaleString()} per year. Your hourly rate should be calculated to hit this target after expenses and taxes.`
+      },
+      {
+        question: `Should I charge for non-billable hours?`,
+        answer: `No, you shouldn't explicitly bill clients for admin work. However, your hourly rate MUST be high enough to cover the time you spend doing administrative tasks, marketing, and accounting. Our calculator accounts for this by only asking for your 'billable' hours per week.`
+      },
+      {
+        question: `How do ${niche.expenses[0]} and other expenses affect my rate?`,
+        answer: `Every business expense directly reduces your profit. For a ${niche.title}, costs like ${niche.expenses.join(' and ')} must be added to your gross revenue target before calculating your hourly rate.`
+      }
+    ]
+  };
+});

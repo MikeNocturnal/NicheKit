@@ -42,6 +42,30 @@ export default async function CalculatorPage({ params }: { params: Promise<{ nic
       </div>
 
       <CalculatorClient initialData={nicheData} />
+
+      {/* SEO Depth Section */}
+      <div className="mt-24 space-y-16 border-t border-white/10 pt-16">
+        <div className="prose prose-invert max-w-none">
+          <h2 className="text-3xl font-bold mb-6">Pricing Guide for {nicheData.title}s</h2>
+          {nicheData.seoParagraphs.map((para, i) => (
+            <p key={i} className="text-foreground/80 leading-relaxed mb-4 text-lg">
+              {para}
+            </p>
+          ))}
+        </div>
+
+        <div>
+          <h2 className="text-3xl font-bold mb-8">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            {nicheData.faqs.map((faq, i) => (
+              <div key={i} className="glass-panel p-6 rounded-2xl border border-white/5">
+                <h3 className="text-xl font-semibold mb-3">{faq.question}</h3>
+                <p className="text-foreground/70 leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
